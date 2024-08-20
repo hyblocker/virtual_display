@@ -505,10 +505,10 @@ public:
 
 	// IVRVirtualDisplay
 
-	virtual void Present( vr::SharedTextureHandle_t backbufferTextureHandle ) override
+	virtual void Present(const vr::PresentInfo_t* pPresentInfo, uint32_t unPresentInfoSize) override
 	{
 		// Open and cache our shared textures to avoid re-opening every frame.
-		ID3D11Texture2D *pTexture = m_pD3DRender->GetSharedTexture( ( HANDLE )backbufferTextureHandle );
+		ID3D11Texture2D *pTexture = m_pD3DRender->GetSharedTexture( ( HANDLE )pPresentInfo->backbufferTextureHandle );
 		if ( pTexture == NULL )
 		{
 			EventWriteString( L"[VDispDvr] Texture is NULL!" );
